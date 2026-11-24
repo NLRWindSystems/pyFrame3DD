@@ -16,7 +16,7 @@ jobs:
             fail-fast: false #true
             matrix:
                 os: ["ubuntu-latest", "macOS-latest", "windows-latest"]
-                python-version: ["3.9", "3.10", "3.11", "3.12"]
+                python-version: ["3.12", "3.13", "3.14"]
 
         steps:
             - name: Setup C/C++ Compiler
@@ -35,7 +35,7 @@ jobs:
                       mingw-w64-x86_64-gcc
 
             - name: checkout repository
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
 
             - name: Set compilers
               if: false == contains( matrix.os, 'windows')
@@ -44,7 +44,7 @@ jobs:
                   echo "CXX=${{ steps.install_cc.outputs.cxx }}" >> $GITHUB_ENV
                   
             - name: Set up Python ${{ matrix.python-version }}
-              uses: actions/setup-python@v5
+              uses: actions/setup-python@v7
               id: cp
               with:
                   python-version: ${{ matrix.python-version }}
@@ -87,13 +87,13 @@ jobs:
             fail-fast: false #true
             matrix:
                 os: ["ubuntu-latest", "macOS-latest", "windows-latest"]
-                python-version: ["3.9", "3.10", "3.11", "3.12"]
+                python-version: ["3.12", "3.13", "3.14"]
 
         steps:
             - name: checkout repository
-              uses: actions/checkout@v3
+              uses: actions/checkout@v7
 
-            - uses: conda-incubator/setup-miniconda@v2
+            - uses: conda-incubator/setup-miniconda@v4
               # https://github.com/marketplace/actions/setup-miniconda
               with:
                   #mamba-version: "*"
